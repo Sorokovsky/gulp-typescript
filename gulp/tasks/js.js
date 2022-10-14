@@ -8,5 +8,13 @@ export const js = () => {
             }
         }))
         .pipe(app.gulp.dest(app.path.build.js))
+        .pipe(app.gulp.src(app.path.src.js, {sourcemaps: true}))
+        .pipe(webpack({
+            mode: 'development',
+            output: {
+                filename: 'script.js'
+            }
+        }))
+        .pipe(app.gulp.dest(app.path.build.js))
         .pipe(app.plugins.browsersync.stream());
 }

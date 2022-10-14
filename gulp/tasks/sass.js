@@ -5,11 +5,11 @@ import cleanCss from 'gulp-clean-css';
 import webpcss from 'gulp-webpcss';
 import autoprefixer from 'gulp-autoprefixer';
 import groupCssMediaQueries from 'gulp-group-css-media-queries';
-const sass = gulpSass(dartSass);
-export const scss = () => {
-    return app.gulp.src(app.path.src.scss, {sourcemaps: true})
+const sasss = gulpSass(dartSass);
+export const sass = () => {
+    return app.gulp.src(app.path.src.sass, {sourcemaps: true})
         .pipe(app.plugins.replace(/@img\//g, '../img/'))
-        .pipe(sass({
+        .pipe(sasss({
             outputStyle: 'expanded'
         }))
         .pipe(groupCssMediaQueries())

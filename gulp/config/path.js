@@ -1,6 +1,6 @@
 import * as nodePath from 'path';
 const rootFolder = nodePath.basename(nodePath.resolve());
-const buildFolder = `./dist`;
+const buildFolder = `./docs`;
 const srcFolder = `./src`;
 export const path = {
     build: {
@@ -16,15 +16,15 @@ export const path = {
         files: `${srcFolder}/files/**/*.*`,
         images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
         svg: `${srcFolder}/img/**/*.svg`,
-        html: `${srcFolder}/*.html`,
+        html: `${srcFolder}/*.{html,pug}`,
         images: `${srcFolder}/img/**/*.{jpg,jpeg,svg,ico,png,gif,webp}`,
-        scss: `${srcFolder}/scss/style.scss`,
+        sass: `${srcFolder}/sass/style.sass`,
         svgicons: `${srcFolder}/svgicons/*.svg`,
     },
     watch: {
         js: `${srcFolder}/js/**/*.js`,
-        scss: `${srcFolder}/scss/**/*.scss`,
-        html: `${srcFolder}/**/*.html`,
+        sass: `${srcFolder}/sass/**/*.sass`,
+        html: `${srcFolder}/**/*.{html,pug}`,
         files: `${srcFolder}/files/**/*.*`,
         images: `${srcFolder}/img/**/*.{jpg,jpeg,svg,ico,png,gif,webp}`,
     },

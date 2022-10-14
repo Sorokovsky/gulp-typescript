@@ -1,81 +1,73 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.isWebp = exports.headerScroll = exports.paralaxOnMove = exports.mobileMenu = exports.closePopub = exports.openPopub = void 0;
-const variables_js_1 = require("./variables.js");
-function openPopub(popub) {
+import { burger, menu, header, } from "./variables.js";
+export function openPopub(popub) {
     if (!popub.classList.contains('_active')) {
         popub.classList.add('_active');
     }
 }
-exports.openPopub = openPopub;
-function closePopub(popub) {
+export function closePopub(popub) {
     if (popub.classList.contains('_active')) {
         popub.classList.remove('_active');
     }
 }
-exports.closePopub = closePopub;
-const burgerToggle = () => {
-    if (variables_js_1.burger.classList.contains("_active")) {
-        variables_js_1.burger.classList.remove("_active");
+var burgerToggle = function () {
+    if (burger.classList.contains("_active")) {
+        burger.classList.remove("_active");
         document.body.classList.remove("_lock");
-        variables_js_1.burger.children[0].classList.remove("_active");
-        closePopub(variables_js_1.menu);
+        burger.children[0].classList.remove("_active");
+        closePopub(menu);
     }
-    else if (!variables_js_1.burger.classList.contains("_active")) {
-        variables_js_1.burger.classList.add("_active");
+    else if (!burger.classList.contains("_active")) {
+        burger.classList.add("_active");
         document.body.classList.add("_lock");
-        variables_js_1.burger.children[0].classList.add("_active");
-        openPopub(variables_js_1.menu);
+        burger.children[0].classList.add("_active");
+        openPopub(menu);
     }
 };
-const mobileMenu = () => {
+export var mobileMenu = function () {
     if (window.innerWidth <= 991) {
-        variables_js_1.burger.addEventListener('click', burgerToggle);
+        burger.addEventListener('click', burgerToggle);
     }
 };
-exports.mobileMenu = mobileMenu;
-function paralaxOnMove(paralax) {
+export function paralaxOnMove(paralax) {
     if (window.innerWidth >= 991) {
-        let centerX = window.innerWidth / 2, centerY = window.innerHeight / 2, paralaxX = 30, speed = 0.23, paralaxY = -30;
-        paralax.style.transform = `translate(${paralaxX}px, ${paralaxY}px)`;
-        document.addEventListener('mousemove', (e) => {
-            if (e.clientX < centerX) {
-                paralaxX = paralaxX - speed;
+        var centerX_1 = window.innerWidth / 2, centerY_1 = window.innerHeight / 2, paralaxX_1 = 30, speed_1 = 0.23, paralaxY_1 = -30;
+        paralax.style.transform = "translate(".concat(paralaxX_1, "px, ").concat(paralaxY_1, "px)");
+        document.addEventListener('mousemove', function (e) {
+            if (e.clientX < centerX_1) {
+                paralaxX_1 = paralaxX_1 - speed_1;
             }
-            else if (e.clientX > centerX) {
-                paralaxX = paralaxX + speed;
+            else if (e.clientX > centerX_1) {
+                paralaxX_1 = paralaxX_1 + speed_1;
             }
-            if (e.clientY > centerY) {
-                paralaxY = paralaxY + speed;
+            if (e.clientY > centerY_1) {
+                paralaxY_1 = paralaxY_1 + speed_1;
             }
-            else if (e.clientY < centerY) {
-                paralaxY = paralaxY - speed;
+            else if (e.clientY < centerY_1) {
+                paralaxY_1 = paralaxY_1 - speed_1;
             }
-            paralax.style.transform = `translate(${paralaxX}px, ${paralaxY}px)`;
-            centerY = e.clientY;
-            centerX = e.clientX;
+            paralax.style.transform = "translate(".concat(paralaxX_1, "px, ").concat(paralaxY_1, "px)");
+            centerY_1 = e.clientY;
+            centerX_1 = e.clientX;
         });
     }
 }
-exports.paralaxOnMove = paralaxOnMove;
-const headerScroll = () => {
+export var headerScroll = function () {
     headerFix();
     document.addEventListener('scroll', headerFix);
 };
-exports.headerScroll = headerScroll;
 function headerFix() {
-    let headerHeight = Number(window.getComputedStyle(variables_js_1.header, null).getPropertyValue("height").replace("px", "")) / 2;
+    var headerHeight = Number(window.getComputedStyle(header, null).getPropertyValue("height").replace("px", "")) / 2;
     if (window.scrollY > headerHeight) {
         console.log(window.scrollY >= headerHeight);
-        variables_js_1.header.classList.add("fixed");
+        header.classList.add("fixed");
     }
     else {
-        variables_js_1.header.classList.remove("fixed");
+        header.classList.remove("fixed");
     }
 }
-function isWebp() {
+export function isWebp() {
     function testWebP(callback) {
-        let webP = new Image();
+        var webP = new Image();
         webP.onload = webP.onerror = function () {
             callback(webP.height == 2);
         };
@@ -90,4 +82,3 @@ function isWebp() {
         }
     });
 }
-exports.isWebp = isWebp;
