@@ -12,7 +12,7 @@ export const js = () => {
         .pipe(app.plugins.ifPlugin(app.isDev, webpack({
             mode: 'development',
             output: {
-                filename: 'script.js'
+                filename: 'script.min.js'
             }
         })))
         .pipe(app.plugins.ifPlugin(app.isDev, app.gulp.dest(app.path.build.js)))
