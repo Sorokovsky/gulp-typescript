@@ -37,6 +37,7 @@
   },
   "scripts": {
     "dev": "concurrently \"tsc --watch \" \"gulp\"",
+    "build": "concurrently \"tsc \" \"gulp --build\"",
     "svgSprive": "gulp svgSprive"
   },
   "author": "",

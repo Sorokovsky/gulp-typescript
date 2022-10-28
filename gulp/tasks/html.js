@@ -4,8 +4,8 @@ export const html = () => {
     return app.gulp.src(app.path.src.html)
     .pipe(app.plugins.pug({}))
     .pipe(app.plugins.replace(/@img\//g, 'img/'))
-    .pipe(webpHtmlNosvg())
-    .pipe(versionNumber({
+    .pipe(app.plugins.ifPlugin(app.isBuild, webpHtmlNosvg()))
+    .pipe(app.plugins.ifPlugin(app.isBuild, versionNumber({
         'value': '%DT%',
         'append': {
             'key': '_v',
@@ -15,7 +15,7 @@ export const html = () => {
         'output': {
             'file': 'gulp/version.json'
         }
-    }))
+    })))
     .pipe(app.gulp.dest(app.path.build.html))
-    .pipe(app.plugins.browsersync.stream());
+    .pipe(app.plugins.ifPlugin(app.isDev, app.plugins.browsersync.stream()));
 }

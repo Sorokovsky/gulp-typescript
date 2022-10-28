@@ -28,4 +28,5 @@ export {svgSprive}
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
 const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, sass, js, images));
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
-gulp.task('default', dev);
+const build = gulp.series(reset, mainTasks);
+gulp.task('default', app.isBuild ? build : dev);

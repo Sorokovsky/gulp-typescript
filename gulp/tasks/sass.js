@@ -12,21 +12,20 @@ export const sass = () => {
         .pipe(sasss({
             outputStyle: 'expanded'
         }))
-        .pipe(groupCssMediaQueries())
-        .pipe(webpcss({
+        .pipe(app.plugins.ifPlugin(app.isBuild, groupCssMediaQueries()))
+        .pipe(app.plugins.ifPlugin(app.isBuild, webpcss({
             webpClass: '.webp',
             nowebpClass: '.no-webp'
-        }))
+        })))
         .pipe(autoprefixer({
             grid: true,
             overrideBrowserslist: ['last 3 versions'],
             cascade: true
         }))
-        .pipe(app.gulp.dest(app.path.build.css))
-        .pipe(cleanCss())
+        .pipe(app.plugins.ifPlugin(app.isBuild, cleanCss()))
         .pipe(rename({
             extname: '.min.css'
         }))
         .pipe(app.gulp.dest(app.path.build.css))
-        .pipe(app.plugins.browsersync.stream());
+        .pipe(app.plugins.ifPlugin(app.isDev, app.plugins.browsersync.stream()));
 }
