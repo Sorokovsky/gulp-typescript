@@ -1,4 +1,5 @@
 const cacheStaticName = "static-v6";
+const cachedDynamycName = "dynamyc-v6";
 const filesForCache = generateStaticUrls();
 self.addEventListener('install', onInstallingWorker);
 self.addEventListener('fetch', onFetchingWorker);
@@ -16,6 +17,7 @@ async function onActivatingWorker(event){
     const cachesNames = await self.caches.keys();
     Promise.all(
         cachesNames.filter(name => name !== cacheStaticName)
+        .filter(name => name !== cachedDynamycName)
         .map(name => self.caches.delete(name))
     )
 }
@@ -29,18 +31,18 @@ async function onFetchingWorker(event){
     }
 }
 async function cacheFirst(request){
-    const caches = await self.caches.open(cacheStaticName);
     const cached = await caches.match(request);
     return cached ?? await fetch(request);
 }
 async function networkFirst(request){
-    const cache = await self.caches.open(cacheStaticName);
+    const cache = await self.caches.open(cachedDynamycName);
     try {
         const fetched = await fetch(request);
+        await cache.put(request, fetched.clone());
         return fetched;
     } catch (error) {
-        const cached = cache.match('/index.html');
-        return cached;
+        const cached = await cache.match(request);
+        return cached ?? await cache.match('./index.html');
     }
 }
 function generateStaticUrls(){
