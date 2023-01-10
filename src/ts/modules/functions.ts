@@ -89,6 +89,7 @@ export function isWebp(){
 }
 export async function registerServiceWarker():Promise<void>{
     if ('serviceWorker' in navigator) {
-        await navigator.serviceWorker.register('./sw.js');
+        const response = await navigator.serviceWorker.register('/sw.js');
+        console.log(response);
     }
 }
