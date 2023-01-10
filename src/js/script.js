@@ -1,3 +1,3 @@
-import { isWebp } from "./modules/functions.js";
-console.log(true);
+import { isWebp, registerServiceWarker } from "./modules/functions.js";
+registerServiceWarker();
 isWebp();

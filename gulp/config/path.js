@@ -8,12 +8,12 @@ export const path = {
         html: `${buildFolder}/`,
         css: `${buildFolder}/css/`,
         images: `${buildFolder}/img/`,
-        files: `${buildFolder}/folder/`,
+        files: `${buildFolder}/`,
         fonts: `${buildFolder}/fonts/`
     },
     src: {
         js: `${srcFolder}/js/script.js`,
-        files: `${srcFolder}/files/**/*.*`,
+        files: `${srcFolder}/*.{js,json}`,
         svg: `${srcFolder}/img/**/*.svg`,
         html: `${srcFolder}/*.{html,pug}`,
         images: `${srcFolder}/img/**/*.{jpg,jpeg,svg,ico,png,gif,webp}`,
@@ -24,7 +24,7 @@ export const path = {
         js: `${srcFolder}/js/**/*.js`,
         sass: `${srcFolder}/sass/**/*.sass`,
         html: `${srcFolder}/**/*.{html,pug}`,
-        files: `${srcFolder}/files/**/*.*`,
+        files: `${srcFolder}/*.{js,json}`,
         images: `${srcFolder}/img/**/*.{jpg,jpeg,svg,ico,png,gif,webp}`,
     },
     clean: buildFolder,
