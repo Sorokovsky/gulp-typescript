@@ -3,9 +3,10 @@
     "short_name": "New Web App",
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
-    "display": "browser",
+    "display": "standalone",
     "scope": "/",
     "start_url": ".",
+    
     "icons": [
       {
         "src": "./img/icons/icon-48x48.png",
