@@ -4,9 +4,9 @@ export const svgSprive = () => {
         .pipe(svgSprite({
             mode: {
                 stack: {
-                    sprite: `../icons/icons.svg`,
-                    example: true
-                }
+                    example: true,
+                },
+                allowEmpty: true
             }
         }))
         .pipe(app.gulp.dest(`${app.path.build.images}`));
